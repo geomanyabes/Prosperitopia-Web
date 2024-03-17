@@ -1,0 +1,22 @@
+<!-- search-toolbar.component.html -->
+
+<mat-toolbar color="primary">
+    <mat-form-field>
+      <input matInput [(ngModel)]="searchText" placeholder="Search">
+    </mat-form-field>
+    
+    <!-- Dropdown for search type -->
+    <mat-form-field>
+      <mat-label>Search Type</mat-label>
+      <mat-select [(ngModel)]="searchType">
+        <mat-option value="EXACT">Exact</mat-option>
+        <mat-option value="CONTAINS">Contains</mat-option>
+        <mat-option value="ENDS_WITH">Ends with</mat-option>
+        <mat-option value="STARTS_WITH">Starts with</mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <!-- Button for search action -->
+    <button mat-raised-button color="accent" (click)="onSearch()">Search</button>
+  </mat-toolbar>
+  

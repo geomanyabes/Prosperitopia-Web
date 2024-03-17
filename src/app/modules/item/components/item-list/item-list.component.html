@@ -1,1 +1,44 @@
-<p>item-list works!</p>
+<app-search-toolbar (search)="onSearch($event)"></app-search-toolbar>
+<div class="mat-elevation-z8">
+    <table mat-table class="full-width-table" matSort aria-label="Elements">
+      <!-- Id Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+        <td mat-cell *matCellDef="let row">{{row.id}}</td>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+        <td mat-cell *matCellDef="let row">{{row.name}}</td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator #paginator
+        [length]="dataSource.data.length"
+        [pageIndex]="0"
+        [pageSize]="10"
+        [pageSizeOptions]="[10, 20, 50, 100, 200]"
+        aria-label="Select page">
+    </mat-paginator>
+  </div>
+  <!-- <button mat-raised-button (click)="previousPage()">Previous</button>
+  <span>{{ pageFilter.page + 1 }}</span>
+  <button mat-raised-button (click)="nextPage()">Next</button> -->
+  <!-- <app-item-table></app-item-table> -->
+  <!-- <div *ngIf="items.length > 0">
+    <mat-list>
+      <mat-list-item *ngFor="let item of items">
+        <h3 mat-line>{{ item.name }}</h3>
+        <p mat-line>{{ item.description }} - {{ item.price }}</p>
+      </mat-list-item>
+    </mat-list>
+  </div>
+  
+  <div *ngIf="items.length === 0">
+    <p>No items found.</p>
+  </div> -->
+  

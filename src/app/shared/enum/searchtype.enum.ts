@@ -1,0 +1,6 @@
+export enum SearchType {
+  EXACT = 'EXACT',
+  CONTAINS = 'CONTAINS',
+  ENDS_WITH = 'ENDS_WITH',
+  STARTS_WITH = 'STARTS_WITH'
+}
