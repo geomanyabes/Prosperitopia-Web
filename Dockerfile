@@ -1,5 +1,5 @@
 # Use node image as base image
-FROM node:18.18.0 AS build
+FROM node:latest AS build
 
 # Set working directory
 WORKDIR /usr/src/app
@@ -8,14 +8,15 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install -g @angular/cli@17.3.0
-RUN npm install
+# RUN npm install -g npm@latest
+# RUN npm install -g @angular/cli
+RUN npm install --legacy-peer-deps
 
-# Copy the rest of the application code
-COPY . .
+# Add the source code to app
+COPY ./ /usr/local/app/
 
 # Build the Angular application
-RUN ng build --prod
+RUN npm run build
 
 # Use nginx image as base image for serving static files
 FROM nginx:latest
