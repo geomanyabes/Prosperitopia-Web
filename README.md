@@ -1,27 +1,55 @@
-# ProsperitopiaWeb
+# Prosperitopia
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.0.
+This is a sample Angular application that has been containerized using Docker.
 
-## Development server
+## Prerequisites
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Before you begin, ensure you have the following installed:
 
-## Code scaffolding
+- Docker: [Install Docker](https://docs.docker.com/get-docker/)
+- Node.js (v18.18.0)
+- Angular CLI (v17.3.0)
+- npm (v10.2.3)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Installation
 
-## Build
+1. Clone the repository to your local machine:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+    ```bash
+    git clone <repository-url>
+    ```
 
-## Running unit tests
+2. Navigate to the project directory:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+    ```bash
+    cd <project-directory>
+    ```
 
-## Running end-to-end tests
+3. Build the Docker image:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+    ```bash
+    docker build -t <image-name> .
+    ```
 
-## Further help
+    Replace `<image-name>` with the desired name for your Docker image.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Running the Application
+
+1. Run the Docker container:
+
+    ```bash
+    docker run -d -p 8080:80 <image-name>
+    ```
+
+    This command starts a Docker container in detached mode (`-d`), maps port 8080 on the host to port 80 in the container (`-p 8080:80`), and specifies the name of the Docker image to use.
+
+2. Access the Angular application:
+
+    Open a web browser and navigate to [http://localhost:8080](http://localhost:8080) to view the running Angular application.
+
+## Stopping the Application
+
+To stop the Docker container, use the following command:
+
+```bash
+docker stop <container-id>
