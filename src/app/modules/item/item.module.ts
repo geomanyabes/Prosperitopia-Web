@@ -10,15 +10,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { ItemListComponent } from './components/item-list/item-list.component';
 import { SharedModule } from '../../shared/shared.module';
 import { MatLineModule } from '@angular/material/core';
-import { ItemTableComponent } from './components/item-table/item-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
-    ItemListComponent,
-    ItemTableComponent
+    ItemListComponent
   ],
   imports: [
     CommonModule,
@@ -29,8 +27,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatSortModule
   ],
   exports: [
-    ItemListComponent,
-    ItemTableComponent
+    ItemListComponent
   ]
 })
 export class ItemModule { }

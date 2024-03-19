@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ItemModule } from './modules/item/item.module';
 import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
 
 @NgModule({
   declarations: [
@@ -10,7 +12,10 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    ItemModule
+    BrowserAnimationsModule,
+    ItemModule,
+    SharedModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

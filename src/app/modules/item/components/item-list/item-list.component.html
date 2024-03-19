@@ -13,6 +13,18 @@
         <td mat-cell *matCellDef="let row">{{row.name}}</td>
       </ng-container>
   
+      <!-- Description Column -->
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+        <td mat-cell *matCellDef="let row">{{row.description}}</td>
+      </ng-container>
+
+      <!-- Category Column -->
+      <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Category</th>
+        <td mat-cell *matCellDef="let row">{{row.Category.Name}}</td>
+      </ng-container>
+  
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
@@ -25,20 +37,3 @@
         aria-label="Select page">
     </mat-paginator>
   </div>
-  <!-- <button mat-raised-button (click)="previousPage()">Previous</button>
-  <span>{{ pageFilter.page + 1 }}</span>
-  <button mat-raised-button (click)="nextPage()">Next</button> -->
-  <!-- <app-item-table></app-item-table> -->
-  <!-- <div *ngIf="items.length > 0">
-    <mat-list>
-      <mat-list-item *ngFor="let item of items">
-        <h3 mat-line>{{ item.name }}</h3>
-        <p mat-line>{{ item.description }} - {{ item.price }}</p>
-      </mat-list-item>
-    </mat-list>
-  </div>
-  
-  <div *ngIf="items.length === 0">
-    <p>No items found.</p>
-  </div> -->
-  

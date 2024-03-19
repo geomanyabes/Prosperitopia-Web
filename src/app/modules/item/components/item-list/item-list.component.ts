@@ -1,5 +1,3 @@
-// item-list.component.ts
-
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Item } from '../../interface/item.interface'; 
 import { ItemService } from '../../item.service';
@@ -7,9 +5,7 @@ import { PageFilter } from '../../../../shared/interface/page-filter.interface';
 import { SearchFilter } from '../../../../shared/interface/search-filter.interface';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTable } from '@angular/material/table';
-import { ItemTableItem } from '../item-table/item-table-datasource';
-
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-item-list',
@@ -19,14 +15,21 @@ import { ItemTableItem } from '../item-table/item-table-datasource';
 export class ItemListComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatTable) table!: MatTable<ItemTableItem>;
+  
+  // Define displayedColumns and dataSource properties
+  displayedColumns: string[] = ['id', 'name', 'description', 'category']; // Adjust this based on your columns
+  
   items: Item[] = [];
   searchFilter: SearchFilter;
   pageFilter: PageFilter;
+  dataSource: MatTableDataSource<Item>;
 
   constructor(private itemService: ItemService) {
     this.searchFilter = { search: '', searchType: '' };
     this.pageFilter = { pageSize: 10, page: 0, sortProperty: 'id', sortDirection: 'asc' };
+    
+    // Initialize MatTableDataSource
+    this.dataSource = new MatTableDataSource<Item>();
   }
 
   ngAfterViewInit(): void {
@@ -58,6 +61,8 @@ export class ItemListComponent implements AfterViewInit {
   loadItems(): void {
     this.itemService.getAllItems(this.searchFilter, this.pageFilter).subscribe(items => {
       this.items = items;
+      // Update dataSource with new data
+      this.dataSource.data = items;
     });
   }
 }
