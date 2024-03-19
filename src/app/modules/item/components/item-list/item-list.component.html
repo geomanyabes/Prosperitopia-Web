@@ -4,6 +4,7 @@
     [hasSearchButton]="true"
     (search)="onSearch($event)">
   </app-search-toolbar>
+  <button mat-raised-button color="accent" class="new-btn" (click)="openItemDetailsForm()">New</button>
 </mat-toolbar>
 <table mat-table class="full-width-table item-list-table" matSort aria-label="Elements">
   <!-- Id Column -->

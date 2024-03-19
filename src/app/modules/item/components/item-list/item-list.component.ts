@@ -6,6 +6,8 @@ import { SearchFilter } from '../../../../shared/interface/search-filter.interfa
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { ItemDetailsComponent } from '../item-details/item-details.component';
 
 @Component({
   selector: 'app-item-list',
@@ -24,18 +26,39 @@ export class ItemListComponent implements AfterViewInit {
   pageFilter: PageFilter;
   dataSource: MatTableDataSource<Item>;
 
-  constructor(private itemService: ItemService) {
+  constructor(private itemService: ItemService, private dialog: MatDialog) {
     this.searchFilter = { search: '', searchType: '' };
     this.pageFilter = { pageSize: 10, page: 0, sortProperty: 'id', sortDirection: 'asc' };
     
     // Initialize MatTableDataSource
     this.dataSource = new MatTableDataSource<Item>();
   }
+  resetFilters() {
+    this.searchFilter = { search: '', searchType: '' };
+    this.pageFilter = { pageSize: 10, page: 0, sortProperty: 'id', sortDirection: 'asc' };
+    
+    // Initialize MatTableDataSource
+    this.dataSource = new MatTableDataSource<Item>();
+    this.loadItems();
+  }
 
   ngAfterViewInit(): void {
     this.loadItems();
   }
-
+  openItemDetailsForm(data?: Item): void {
+    // Open the item details form in a dialog
+    const dialogRef = this.dialog.open(ItemDetailsComponent, {
+      width: '340px', // Adjust the width as needed
+      data: data
+    });
+    dialogRef.componentInstance.title = `${data == null ? 'Create' : 'Update'} Item`;
+    // dialogRef
+    // Subscribe to the afterClosed event to handle result or action after the dialog is closed
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // Perform any action needed after the dialog is closed
+    });
+  }
   onSearch(evt: any /*{searchText: string, searchType: string }*/): void {
     // Assign event data to search filter
     console.log(evt);

@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Item } from './interface/item.interface'; // Adjust the path as needed
-import { CreUpdateItem } from './interface/creupdateitem.interface'; // Adjust the path as needed
 import { SearchFilter } from '../../shared/interface/search-filter.interface';
 import { PageFilter } from '../../shared/interface/page-filter.interface';
 
@@ -31,11 +30,11 @@ export class ItemService {
     return this.http.get<Item>(`${this.baseUrl}/${id}`);
   }
 
-  createItem(itemDto: CreUpdateItem): Observable<Item> {
+  createItem(itemDto: Item): Observable<Item> {
     return this.http.post<Item>(this.baseUrl, itemDto);
   }
 
-  updateItem(id: number, itemDto: CreUpdateItem): Observable<Item> {
+  updateItem(id: number, itemDto: Item): Observable<Item> {
     return this.http.put<Item>(`${this.baseUrl}/${id}`, itemDto);
   }
 }

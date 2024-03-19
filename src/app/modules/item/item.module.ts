@@ -10,6 +10,9 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ItemDetailsComponent } from './components/item-details/item-details.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -21,11 +24,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule,
     SharedModule,
     MatTableModule, 
     MatPaginatorModule,
     MatSortModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatGridListModule,
   ],
   exports: [
     ItemListComponent,

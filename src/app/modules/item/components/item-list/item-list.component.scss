@@ -1,6 +1,14 @@
 :host {
     display: flex;
     flex-direction: column;
+    mat-toolbar {
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+        .new-btn {
+            margin-left: auto;
+        }
+    }
 }
 .item-list-table {
     flex: 1; /* This will make the table take up the remaining space */
