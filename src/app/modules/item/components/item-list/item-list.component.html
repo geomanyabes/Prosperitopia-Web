@@ -1,4 +1,20 @@
-<app-search-toolbar (search)="onSearch($event)"></app-search-toolbar>
+<mat-toolbar color="primary">
+  <!-- search-toolbar.component.html -->
+  <!--
+  @Input() hasSearchButton: boolean = true;
+  @Input() emptyText: string = 'Search';
+  @Input() searchFieldLabel?: string;
+  @Input() searchFieldWidth?: number;
+  @Input() searchTypeFieldLabel?: string;
+  @Input() searchTypeFieldWidth?: number;
+  @Input() buttonText: string = 'Search';
+  @Input() buttonWidth?: number;
+  -->
+  <app-search-toolbar 
+    [hasSearchButton]="true"
+    (search)="onSearch($event)">
+  </app-search-toolbar>
+</mat-toolbar>
 <div class="mat-elevation-z8">
     <table mat-table class="full-width-table" matSort aria-label="Elements">
       <!-- Id Column -->

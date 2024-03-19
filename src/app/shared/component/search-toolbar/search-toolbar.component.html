@@ -1,22 +1,21 @@
-<!-- search-toolbar.component.html -->
+<div class="app-toolbar-container">
+  <mat-form-field [style.width.px]="searchFieldWidth">
+    <mat-label>{{ searchFieldLabel || 'Search' }}</mat-label>
+    <input matInput [placeholder]="emptyText" [(ngModel)]="searchText">
+  </mat-form-field>
 
-<mat-toolbar color="primary">
-    <mat-form-field>
-      <input matInput [(ngModel)]="searchText" placeholder="Search">
-    </mat-form-field>
-    
-    <!-- Dropdown for search type -->
-    <mat-form-field>
-      <mat-label>Search Type</mat-label>
-      <mat-select [(ngModel)]="searchType">
-        <mat-option value="EXACT">Exact</mat-option>
-        <mat-option value="CONTAINS">Contains</mat-option>
-        <mat-option value="ENDS_WITH">Ends with</mat-option>
-        <mat-option value="STARTS_WITH">Starts with</mat-option>
-      </mat-select>
-    </mat-form-field>
-  
-    <!-- Button for search action -->
-    <button mat-raised-button color="accent" (click)="onSearch()">Search</button>
-  </mat-toolbar>
-  
+  <mat-form-field [style.width.px]="searchTypeFieldWidth">
+    <mat-label>{{ searchTypeFieldLabel || 'Search Type' }}</mat-label>
+    <mat-select [(ngModel)]="searchType">
+      <mat-option *ngFor="let option of searchTypes" [value]="option">
+        {{ SearchTypeEnumMapping[option] }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+
+  <button *ngIf="hasSearchButton" mat-raised-button color="accent" [style.width.px]="buttonWidth" (click)="onSearch()">
+    {{ buttonText }}
+  </button>
+</div>
