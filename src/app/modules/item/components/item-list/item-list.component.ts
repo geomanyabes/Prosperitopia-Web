@@ -5,7 +5,7 @@ import { PageFilter } from '../../../../shared/interface/page-filter.interface';
 import { SearchFilter } from '../../../../shared/interface/search-filter.interface';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-item-list',
