@@ -1,5 +1,5 @@
 // item-details.component.ts
-import { Component, EventEmitter, Input, Output, OnInit, Inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit, Inject, input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Item } from '../../interface/item.interface';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
@@ -12,6 +12,7 @@ import { ItemService } from '../../item.service';
 })
 export class ItemDetailsComponent implements OnInit {
   @Input() item: Item | undefined; // Input property to pass item data
+  @Input() readonly: boolean;
   @Output() submitForm: EventEmitter<Item> = new EventEmitter<Item>(); // Output event for form submission
 
   public breakpoint: number; // Breakpoint observer code
@@ -21,12 +22,13 @@ export class ItemDetailsComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: Item,
    private formBuilder: FormBuilder, public dialogRef: MatDialogRef<ItemDetailsComponent>,
    private itemService: ItemService) {
+    this.readonly = false;
     this.form = this.formBuilder.group({
       id: [],
-      name: ['', Validators.required],
-      description: ['', Validators.required],
-      category: ['', Validators.required],
-      price: []
+      name: [{value: '', disabled: this.readonly}, Validators.required],
+      description: [{value: '', disabled: this.readonly}, Validators.required],
+      category: [{value: '', disabled: this.readonly}, Validators.required],
+      price: [{value: '', disabled: this.readonly}]
     });
     this.breakpoint = 0;
   }
@@ -45,9 +47,16 @@ export class ItemDetailsComponent implements OnInit {
 
   onSubmit(): void {
     let data = this.form.value;
-    this.itemService.createItem(data).subscribe(e => {
-      this.dialogRef.close(e);
-    });
+    if(data.id == 0) {
+      this.itemService.createItem(data).subscribe(e => {
+        this.dialogRef.close(e);
+      });
+    }
+    else {
+      this.itemService.updateItem(data.id, data).subscribe(e => {
+        this.dialogRef.close(e);
+      });
+    }
     // Emit the form data when the form is submitted
     this.submitForm.emit(this.form.value);
   }
@@ -60,12 +69,4 @@ export class ItemDetailsComponent implements OnInit {
   public onResize(event: any): void {
     this.breakpoint = event.target.innerWidth <= 600 ? 1 : 2;
   }
-
-  // private markAsDirty(group: FormGroup): void {
-  //   group.markAsDirty();
-  //   // tslint:disable-next-line:forin
-  //   for (const i in group.controls) {
-  //     group.controls[i].markAsDirty();
-  //   }
-  // }
 }

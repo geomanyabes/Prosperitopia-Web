@@ -1,3 +1,4 @@
 export const environment = {
-    BASE_URL: ""
+    BASE_URL: "",
+    API_KEY: ""
 };

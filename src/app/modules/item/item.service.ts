@@ -6,35 +6,46 @@ import { environment } from '../../../environments/environment';
 import { Item } from './interface/item.interface'; // Adjust the path as needed
 import { SearchFilter } from '../../shared/interface/search-filter.interface';
 import { PageFilter } from '../../shared/interface/page-filter.interface';
+import { HttpService } from '../../core/service/http/http-service.service';
+import { PagedResult } from '../../shared/interface/paged-result.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ItemService {
-  private baseUrl: string = environment.BASE_URL + '/items';
-  constructor(private http: HttpClient) { }
+  constructor(private httpService: HttpService) { }
   
-  getAllItems(searchFilter: SearchFilter, pageFilter: PageFilter): Observable<Item[]> {
-    // Construct query string with search and page filters
-    let queryString = `?pageSize=${pageFilter.pageSize}&page=${pageFilter.page}&sortProperty=${pageFilter.sortProperty}&sortDirection=${pageFilter.sortDirection}`;
+  getAllItems(searchFilter: SearchFilter, pageFilter: PageFilter): Observable<PagedResult<Item>> {
+    // Construct query params
+    const params: any = {
+      pageSize: pageFilter.pageSize.toString(),
+      page: pageFilter.page.toString(),
+      sortProperty: pageFilter.sortProperty,
+      sortDirection: pageFilter.sortDirection
+    };
 
     // Add search filter if provided
     if (searchFilter.search) {
-      queryString += `&search=${searchFilter.search}&searchType=${searchFilter.searchType}`;
+      params['search'] = searchFilter.search;
+      params['searchType'] = searchFilter.searchType;
     }
 
-    // Make HTTP GET request with constructed query string
-    return this.http.get<Item[]>(`${this.baseUrl}${queryString}`);
+    // Make HTTP GET request using generic get method from HttpService
+    return this.httpService.get<PagedResult<Item>>('items', params);
   }
+
   getItemById(id: number): Observable<Item> {
-    return this.http.get<Item>(`${this.baseUrl}/${id}`);
+    return this.httpService.get<Item>(`items/${id}`);
   }
 
   createItem(itemDto: Item): Observable<Item> {
-    return this.http.post<Item>(this.baseUrl, itemDto);
+    return this.httpService.post<Item>('items', itemDto);
   }
 
   updateItem(id: number, itemDto: Item): Observable<Item> {
-    return this.http.put<Item>(`${this.baseUrl}/${id}`, itemDto);
+    return this.httpService.put<Item>(`items/${id}`, itemDto);
+  }
+  deleteItem(id: number): Observable<Item> {
+    return this.httpService.delete<Item>(`items/${id}`);
   }
 }

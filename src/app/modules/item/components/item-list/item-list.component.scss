@@ -1,6 +1,17 @@
 :host {
     display: flex;
     flex-direction: column;
+    .item-list-table-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        .item-list-table {
+            overflow-y: auto; /* Add scrollbar if content overflows */
+            tbody tr {
+                max-height: 50px; /* Adjust the value as needed */
+            }
+        }
+    }
     mat-toolbar {
         display: flex;
         flex-direction: row;
@@ -10,7 +21,8 @@
         }
     }
 }
-.item-list-table {
-    flex: 1; /* This will make the table take up the remaining space */
-    overflow-y: auto; /* Add scrollbar if content overflows */
-}
+// .item-list-table td {
+//     white-space: nowrap; /* Prevent text from wrapping */
+//     overflow: hidden; /* Hide overflowing content */
+//     text-overflow: ellipsis; /* Show ellipsis (...) for overflowed content */
+// }

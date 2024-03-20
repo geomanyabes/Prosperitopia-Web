@@ -1,54 +1,84 @@
-:host {
-    padding: 30px;
-}
+// :host {
+//     padding: 30px;
+// }
+// mat-form-field {
+//     width: 90%;
+// }
+//     .id-name {
+//         width: 35%;
+//         margin-right: 5px;
+//     }
+//     .id-number {
+//         width: 55%;
+//         margin-left: 5px;
+//     }
+//     .phone-name {
+//         width: 45px;
+//         margin-right: 5px;
+//     }
+//     .country-code {
+//         width: 25%;
+//         margin-left: 1px;
+//     }
+//     .phone-number {
+//         width: 65%;
+//         margin-left: 5px;
+//     }
+//     .btn-sec {
+//         margin-right: 5rem !important;
+//         text-align: right;
+//         margin-top: 1.5em;
+//     }
+//     .Update-btn {
+//         margin: 5px;
+//     }
+//     .Discard-btn {
+//         margin: 5px;
+//     }
+//     .text-inside {
+//         position: absolute;
+//         left: 5px;
+//         width: 100%;
+//     }
+//     @media (max-width: 800px) {
+//     .btn-sec {
+//         margin-right: 1rem !important;
+//     }
+//     }
+//     @media (max-width: 600px) {
+//     .btn-sec {
+//         margin-right: 1rem !important;
+//     }
+// }
+// // .item-detail-form {
+// //     // display: flex;
+// //     // flex-wrap: wrap;
+// //     // flex-direction: row;
+// //     // margin: 25% auto;
+// //     // padding: 2rem;
+// // }
+// mat-form-field {
+//     width: 90%;
+//     // flex-basis: 100%;
+//     // flex-grow: 1;
+// }
 
-mat-form-field {
-        width: 90%;
-    }
-    .id-name {
-        width: 35%;
-        margin-right: 5px;
-    }
-    .id-number {
-        width: 55%;
-        margin-left: 5px;
-    }
-    .phone-name {
-        width: 45px;
-        margin-right: 5px;
-    }
-    .country-code {
-        width: 25%;
-        margin-left: 1px;
-    }
-    .phone-number {
-        width: 65%;
-        margin-left: 5px;
-    }
-    .btn-sec {
-        margin-right: 5rem !important;
-        text-align: right;
-        margin-top: 1.5em;
-    }
-    .Update-btn {
-        margin: 5px;
-    }
-    .Discard-btn {
-        margin: 5px;
-    }
-    .text-inside {
-        position: absolute;
-        left: 5px;
-        width: 100%;
-    }
-    @media (max-width: 800px) {
-    .btn-sec {
-        margin-right: 1rem !important;
-    }
-    }
-    @media (max-width: 600px) {
-    .btn-sec {
-        margin-right: 1rem !important;
-    }
-}
+
+.form-container {
+    padding: 20px; /* Add padding to the container */
+  }
+  
+  .form-title {
+    text-align: center; /* Center align the title */
+    margin-bottom: 20px; /* Add margin to separate the title from the form */
+  }
+  
+  .item-detail-form {
+    /* Add your form styling here */
+  }
+  mat-grid-tile {
+    // margin: 10px;
+    padding: 10px;
+  }
+  /* Add any other necessary styles */
   
