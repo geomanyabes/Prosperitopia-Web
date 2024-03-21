@@ -15,6 +15,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatSortModule,
     MatToolbarModule,
     MatGridListModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule
   ],
   exports: [
     ItemListComponent,

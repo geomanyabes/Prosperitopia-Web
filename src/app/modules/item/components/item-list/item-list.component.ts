@@ -31,6 +31,7 @@ export class ItemListComponent implements AfterViewInit {
   pageSize: number = 10;
   sortDirection: string = 'asc';
   sortProperty: string = 'id';
+  isLoading: boolean = false;
 
   dataSource: MatTableDataSource<Item>;
 
@@ -90,21 +91,14 @@ export class ItemListComponent implements AfterViewInit {
     });
   }
 
-  // confirmDelete(id: number): void {
-  //   const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-  //     width: '250px',
-  //     data: 'Are you sure you want to delete this item?'
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     if (result) {
-  //       // User confirmed delete, call deleteItem
-  //       this.itemService.deleteItem(id).subscribe(() => {
-  //         // Handle delete success
-  //       });
-  //     }
-  //   });
-  // }
+  confirmDelete(id: number): void {
+    const ans = confirm('Are you sure you want to delete this item?');
+    if(ans) {
+      this.itemService.deleteItem(id).subscribe(() => {
+        this.loadItems();
+      });
+    }
+  }
 
 
   openItemDetailsForm(data: Item, readonly: boolean): void {
@@ -130,11 +124,13 @@ export class ItemListComponent implements AfterViewInit {
     this.loadItems();
   }
   loadItems(): void {
+    this.isLoading = true;
     let searchFilter = this.getSearchFilters();
     let pageFilter = this.getPageFilters();
     this.itemService.getAllItems(searchFilter, pageFilter).subscribe(result => {
       this.pagedItems = result;
       this.dataSource.data = this.pagedItems.result;
+      this.isLoading = false;
     });
   }
 }

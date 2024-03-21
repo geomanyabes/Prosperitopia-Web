@@ -50,15 +50,17 @@ export class ItemDetailsComponent implements OnInit {
     if(data.id == 0) {
       this.itemService.createItem(data).subscribe(e => {
         this.dialogRef.close(e);
+        // Emit the form data when the form is submitted
+        this.submitForm.emit(this.form.value);
       });
     }
     else {
       this.itemService.updateItem(data.id, data).subscribe(e => {
         this.dialogRef.close(e);
+        // Emit the form data when the form is submitted
+        this.submitForm.emit(this.form.value);
       });
     }
-    // Emit the form data when the form is submitted
-    this.submitForm.emit(this.form.value);
   }
   onCancel() {
     this.dialogRef.close(this.form.value);
