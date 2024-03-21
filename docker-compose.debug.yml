@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  prosperitopia-web:
+    image: prosperitopia-web
+    build:
+      context: .
+      dockerfile: ./Dockerfile

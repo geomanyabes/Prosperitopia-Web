@@ -1,4 +1,11 @@
-node_modules
-dist
-.dockerignore
-.git
+**/node_modules
+**/dist
+**/.dockerignore
+**/.git
+**/.gitignore
+**/.editorconfig
+**/README.md
+**/.env
+**/.vscode
+**/.aws
+**/npm-debug.log
