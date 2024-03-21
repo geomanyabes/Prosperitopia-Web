@@ -1,1 +1,52 @@
-<p>item-details works!</p>
+<div class="form-title">
+    <h2 class="primary">{{title}}</h2>
+</div>
+<div>
+    <form [formGroup]="form" class="item-detail-form">
+    <mat-grid-list cols="2" [cols]="breakpoint" rowHeight="85px" (window:resize)="onResize($event)">
+        <mat-grid-tile>
+        <div class="text-inside">
+            <mat-form-field>
+            <input matInput placeholder="Name" formControlName="name" required (disabled)="readonly">
+            <mat-error *ngIf="form.controls.name?.hasError('required')">
+                Name is required.
+            </mat-error>
+            </mat-form-field>
+        </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+        <div class="text-inside">
+            <mat-form-field class="example-full-width">
+            <input matInput placeholder="Description" formControlName="description" required (disabled)="readonly">
+            <mat-error *ngIf="form.controls.description?.hasError('required')">
+                Description is required.
+            </mat-error>
+            </mat-form-field>
+        </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+        <div class="text-inside">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Price" formControlName="price" type="number" (disabled)="readonly">
+            </mat-form-field>
+        </div>
+        </mat-grid-tile>         
+        <mat-grid-tile>
+        <div class="text-inside">
+            <mat-form-field class="example-full-width">
+            <input matInput placeholder="Category" formControlName="category" required (disabled)="readonly">
+            <mat-error *ngIf="form.controls.category?.hasError('required')">
+                Category is required.
+            </mat-error>
+            </mat-form-field>
+        </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+
+    <div class="btn-sec">
+        <button *ngIf="!readonly" mat-raised-button type="submit" color="primary" class="Update-btn" (click)="onSubmit()">Save</button>
+        <button mat-raised-button type="button" class="Discard-btn" (click)="onCancel()">Cancel</button>
+    </div>
+
+    </form>
+</div>

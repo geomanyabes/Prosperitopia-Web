@@ -1,9 +1,20 @@
 // item.module.ts
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ItemRoutingModule } from './item-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ItemListComponent } from './components/item-list/item-list.component';
+import { SharedModule } from '../../shared/shared.module';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { ItemDetailsComponent } from './components/item-details/item-details.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -12,7 +23,23 @@ import { ItemDetailsComponent } from './components/item-details/item-details.com
   ],
   imports: [
     CommonModule,
-    ItemRoutingModule
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule,
+    SharedModule,
+    MatTableModule,
+    MatMenuModule,
+    MatIconModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatToolbarModule,
+    MatGridListModule,
+  ],
+  exports: [
+    ItemListComponent,
+    ItemDetailsComponent
   ]
 })
 export class ItemModule { }

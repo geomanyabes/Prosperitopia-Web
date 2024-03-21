@@ -1,0 +1,17 @@
+:host {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    height: 100%;
+    flex-wrap: wrap;
+
+    mat-form-field {
+        flex: 1;
+        margin-right: 10px;
+    }
+    button.mat-raised-button {
+        min-width: 100px;
+        margin-right: 10px;
+    }
+}
+  

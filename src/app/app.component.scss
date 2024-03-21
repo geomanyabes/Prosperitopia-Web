@@ -1,0 +1,19 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+  app-item-list {
+    flex: 1; /* This will make the item list take up the remaining space */
+    display: flex;
+    flex-direction: column;
+  }
+  app-footer {
+    flex-shrink: 0; /* Prevent the footer from shrinking */
+  }
+  
+
+  .toolbar-spacer {
+    flex: 1 1 auto !important;
+  }

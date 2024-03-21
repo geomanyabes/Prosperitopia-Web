@@ -1,0 +1,15 @@
+<mat-form-field [style.width.px]="searchFieldWidth">
+  <mat-label>{{ searchFieldLabel || 'Search' }}</mat-label>
+  <input matInput [placeholder]="emptyText" [(ngModel)]="searchText">
+</mat-form-field>
+<mat-form-field [style.width.px]="searchTypeFieldWidth">
+  <mat-label>{{ searchTypeFieldLabel || 'Search Type' }}</mat-label>
+  <mat-select [(ngModel)]="searchType">
+    <mat-option *ngFor="let option of searchTypes" [value]="option">
+      {{ SearchTypeEnumMapping[option] }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<button *ngIf="hasSearchButton" mat-raised-button color="accent" [style.width.px]="buttonWidth" (click)="onSearch()">
+  {{ buttonText }}
+</button>

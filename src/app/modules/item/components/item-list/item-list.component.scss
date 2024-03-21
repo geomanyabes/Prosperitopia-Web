@@ -1,0 +1,28 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    .item-list-table-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        .item-list-table {
+            overflow-y: auto; /* Add scrollbar if content overflows */
+            tbody tr {
+                max-height: 50px; /* Adjust the value as needed */
+            }
+        }
+    }
+    mat-toolbar {
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+        .new-btn {
+            margin-left: auto;
+        }
+    }
+}
+// .item-list-table td {
+//     white-space: nowrap; /* Prevent text from wrapping */
+//     overflow: hidden; /* Hide overflowing content */
+//     text-overflow: ellipsis; /* Show ellipsis (...) for overflowed content */
+// }
