@@ -9,6 +9,7 @@ COPY package*.json ./
 
 # Install dependencies
 RUN npm install -g npm@10.2.3
+RUN npm install -g @angular/cli@17.3.0
 RUN npm install --legacy-peer-deps
 # Compatibility
 RUN npx ngcc --properties es2023 browser module main --first-only --create-ivy-entry-points
