@@ -9,7 +9,7 @@ COPY package*.json ./
 
 # Install dependencies
 RUN npm install -g npm@10.2.3
-RUN npm ci --legacy-peer-deps
+RUN npm install --legacy-peer-deps
 # Compatibility
 RUN npx ngcc --properties es2023 browser module main --first-only --create-ivy-entry-points
 
@@ -18,15 +18,16 @@ COPY . .
 
 # Build the Angular application
 RUN npm run build
-
 # Use nginx image as base image for serving static files
 FROM nginx:stable
 
+# Remove existing files in NGINX default public directory
+RUN rm -rf /usr/share/nginx/html/*
+
+COPY nginx.conf /etc/nginx/nginx.conf
 # Copy built Angular app to nginx default public directory
-COPY --from=build /app/dist/prosperitopia-web/ /usr/share/nginx/html
+COPY --from=build /usr/src/app/dist/prosperitopia-web/browser /usr/share/nginx/html
 
 # Expose port 80
 EXPOSE 80
-
-# Command to run nginx
-CMD ["nginx", "-g", "daemon off;"]
+EXPOSE 443

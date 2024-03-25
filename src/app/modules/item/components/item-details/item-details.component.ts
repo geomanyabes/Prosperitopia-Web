@@ -17,7 +17,7 @@ export class ItemDetailsComponent implements OnInit {
 
   public breakpoint: number; // Breakpoint observer code
   public form: FormGroup;
-  title: string = 'Item Form';
+  title: string = 'Item Details';
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: Item,
    private formBuilder: FormBuilder, public dialogRef: MatDialogRef<ItemDetailsComponent>,

@@ -6,7 +6,8 @@
         display: flex;
         flex-direction: column;
         .item-list-table {
-            overflow-y: auto; /* Add scrollbar if content overflows */
+            // width: 100%;
+            overflow: auto; /* Add scrollbar if content overflows */
             tbody tr {
                 max-height: 50px; /* Adjust the value as needed */
             }
@@ -21,8 +22,51 @@
         }
     }
 }
-// .item-list-table td {
-//     white-space: nowrap; /* Prevent text from wrapping */
-//     overflow: hidden; /* Hide overflowing content */
-//     text-overflow: ellipsis; /* Show ellipsis (...) for overflowed content */
+
+// scss
+// /* item-list.component.scss */
+// :host {
+//     display: flex;
+//     flex-direction: column;
+//     .item-list-table-container {
+//         flex: 1;
+//         display: flex;
+//         flex-direction: column;
+//         .item-list-table {
+//             overflow-x: auto; /* Enable horizontal scrolling */
+//             tbody tr {
+//                 max-height: 50px; /* Adjust the value as needed */
+//             }
+//         }
+//     }
+//     mat-toolbar {
+//         display: flex;
+//         flex-direction: row;
+//         align-items: baseline;
+//         .new-btn {
+//             margin-left: auto;
+//         }
+//     }
 // }
+
+// /* Responsive styles */
+// // @media screen and (max-width: 600px) {
+// //     .item-list-table-container {
+// //         .item-list-table {
+// //             tbody tr {
+// //                 display: block;
+// //                 border-bottom: 1px solid #ccc;
+// //                 margin-bottom: 10px;
+// //             }
+// //             td {
+// //                 display: block;
+// //                 text-align: left;
+// //                 font-size: 14px;
+// //                 padding: 10px;
+// //             }
+// //             th {
+// //                 display: none;
+// //             }
+// //         }
+// //     }
+// // }

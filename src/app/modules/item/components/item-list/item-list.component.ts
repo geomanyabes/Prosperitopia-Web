@@ -50,18 +50,23 @@ export class ItemListComponent implements AfterViewInit {
   getSearchFilters(): SearchFilter {
     return { search: this.searchTerm, searchType: this.searchType }
   }
-  resetFilters() {
-    this.searchTerm = '';
-    this.searchType = 'EXACT';
+  private resetFilters(): void {
+    this.resetSearchFilter();
+    this.resetPageFilter();
+    this.loadItems();
+  }
+  private resetPageFilter(): void {
     this.page = 0;
     this.pageSize = 10;
     this.sortDirection = 'asc';
     this.sortProperty = 'id';
-    this.loadItems();
   }
-
+  private resetSearchFilter() : void {
+    this.searchTerm = '';
+    this.searchType = 'EXACT';
+  }
   ngAfterViewInit(): void {
-    this.loadItems();
+    this.resetFilters();
   }
   onPageEvent(event?:PageEvent) {
     this.page = event?.pageIndex || 0;
@@ -108,29 +113,37 @@ export class ItemListComponent implements AfterViewInit {
       data: data
     });
     const formRef = dialogRef.componentInstance;
-    formRef.title = `${data == null ? 'Create' : 'Update'} Item`;
+    // formRef.title = `${data.id ? 'Update' : 'Create'} Item`;
     formRef.readonly = readonly;
     formRef.submitForm.subscribe(item => {
       this.loadItems();
     });
   }
   onSearch(evt: any): void {
-    // Assign event data to search filter
-    console.log(evt);
     this.searchTerm = evt.searchText;
     this.searchType = evt.searchType;
-
-    // Reload items with updated search filter
+    this.resetPageFilter();
     this.loadItems();
   }
   loadItems(): void {
-    this.isLoading = true;
+    setTimeout(() => {
+      this.isLoading = true;
+      this.dataSource.data = [];
+    }, 0);
     let searchFilter = this.getSearchFilters();
     let pageFilter = this.getPageFilters();
-    this.itemService.getAllItems(searchFilter, pageFilter).subscribe(result => {
-      this.pagedItems = result;
-      this.dataSource.data = this.pagedItems.result;
-      this.isLoading = false;
-    });
+    this.itemService.getAllItems(searchFilter, pageFilter)
+      .subscribe({
+          next: result => {
+          this.pagedItems = result;
+          this.dataSource.data = this.pagedItems.result;
+          this.isLoading = false;
+        },
+        error: error => {
+          console.error('Error fetching items:', error);
+          this.isLoading = false;
+          this.dataSource.data = [];
+        }
+      });
   }
 }
