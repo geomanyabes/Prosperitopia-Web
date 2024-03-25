@@ -4,6 +4,7 @@ import { FooterComponent } from './component/footer/footer.component';
 import { HeaderComponent } from './component/header/header.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { HttpService } from './service/http/http-service.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { HttpService } from './service/http/http-service.service';
   ],
   imports: [
     CommonModule,
-    MatToolbarModule
+    MatToolbarModule,
+    HttpClientModule
   ],
   exports: [
     HeaderComponent,

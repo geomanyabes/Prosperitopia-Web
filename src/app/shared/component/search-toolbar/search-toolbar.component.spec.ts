@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from '../../shared.module';
 
 import { SearchToolbarComponent } from './search-toolbar.component';
 
@@ -8,7 +10,8 @@ describe('SearchToolbarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SearchToolbarComponent]
+      imports: [SharedModule, BrowserAnimationsModule],
+      declarations: [SearchToolbarComponent]
     })
     .compileComponents();
     

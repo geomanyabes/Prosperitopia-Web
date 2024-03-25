@@ -2,7 +2,7 @@
 import { Component, EventEmitter, Input, Output, OnInit, Inject, input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Item } from '../../interface/item.interface';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ItemService } from '../../item.service';
 
 @Component({

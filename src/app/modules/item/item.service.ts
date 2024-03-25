@@ -1,8 +1,6 @@
 // item.service.ts
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
 import { Item } from './interface/item.interface'; // Adjust the path as needed
 import { SearchFilter } from '../../shared/interface/search-filter.interface';
 import { PageFilter } from '../../shared/interface/page-filter.interface';
